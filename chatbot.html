@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: transparent; /* Set the background color of the body to be transparent */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .chat-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 400px; /* Fixed width for the chatbot */
+            max-height: 500px; /* Fixed maximum height for the chatbot */
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background-color: #449955;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .chat-content {
+            padding: 10px;
+            flex: 1;
+            overflow-y: scroll;
+        }
+        
+        .user-message, .bot-message {
+            padding: 10px;
+            border-radius: 10px;
+            margin: 5px;
+        }
+        
+        .user-message {
+            background-color: #66BB6A;
+            color: #fff;
+            align-self: flex-end;
+        }
+        
+        .bot-message {
+            background-color: #fff;
+            color: #333;
+        }
+        
+        .input-container {
+            display: flex;
+            padding: 10px;
+            background-color: #449955;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        #send-button {
+            background-color: #66BB6A;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">E-Waste Bot</div>
+        <div class="chat-content" id="chat-content">
+            <div class="bot-message">Hello! How can I assist you with e-waste management today?</div>
+        </div>
+        <div class="input-container">
+            <input type="text" id="user-input" placeholder="Type your message here">
+            <button id="send-button">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatContent = document.getElementById('chat-content');
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value;
+            appendUserMessage(userMessage);
+            processUserMessage(userMessage);
+            userInput.value = '';
+        });
+
+        function appendBotMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('bot-message');
+            messageDiv.textContent = message;
+            chatContent.appendChild(messageDiv);
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+
+        function appendUserMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('user-message');
+            messageDiv.textContent = message;
+            chatContent.appendChild(messageDiv);
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+
+        function processUserMessage(userMessage) {
+    const lowerUserMessage = userMessage.toLowerCase();
+
+    let response;
+
+    if (lowerUserMessage.includes('recycling')) {
+        response = "E-waste recycling is crucial for the environment. Look for local recycling centers or events in your area.";
+    } else if (lowerUserMessage.includes('disposal')) {
+        response = "Proper e-waste disposal is essential. Avoid throwing electronics in the regular trash. Find certified e-waste disposal services.";
+    } else if (lowerUserMessage.includes('e-waste categories')) {
+        response = "E-waste categories include old computers, smartphones, TVs, and other electronic devices. These should be properly managed to prevent environmental harm.";
+    } else if (lowerUserMessage.includes('reduce e-waste')) {
+        response = "To reduce e-waste, consider repairing, upgrading, or donating your old electronics. Proper maintenance can extend their lifespan.";
+    } else if (lowerUserMessage.includes('reuse electronics')) {
+        response = "Reuse old electronics by donating them, selling them, or repurposing them for new tasks to minimize e-waste.";
+    } else if (lowerUserMessage.includes('toxic substances')) {
+        response = "E-waste may contain toxic substances like lead, mercury, and cadmium. Proper disposal prevents these substances from polluting the environment.";
+    } else if (lowerUserMessage.includes('e-waste laws')) {
+        response = "Many countries have e-waste laws. Familiarize yourself with local regulations for proper disposal and recycling.";
+    } else if (lowerUserMessage.includes('environmental impact')) {
+        response = "Improper e-waste disposal harms the environment due to toxic materials. Recycling and responsible disposal help reduce the impact.";
+    } else if (lowerUserMessage.includes('e-waste recycling programs')) {
+        response = "Check for government or manufacturer-sponsored e-waste recycling programs in your area. They often provide free or convenient disposal options.";
+    } else if (lowerUserMessage.includes('electronics donation')) {
+        response = "Consider donating old electronics to schools, non-profits, or organizations that can make use of them.";
+    } else if (lowerUserMessage.includes('data security')) {
+        response = "Before disposing of electronics, ensure data security by wiping all personal information from the devices.";
+    } else if (lowerUserMessage.includes('e-waste in landfills')) {
+        response = "E-waste in landfills poses environmental risks. Avoid disposing of electronics in regular waste.";
+    } else if (lowerUserMessage.includes('recycling benefits')) {
+        response = "Recycling e-waste conserves resources and reduces energy consumption, making it an eco-friendly choice.";
+    } else if (lowerUserMessage.includes('electronics resale')) {
+        response = "Reselling old electronics can be an eco-friendly option and may even earn you some money.";
+    } else if (lowerUserMessage.includes('e-waste collection events')) {
+        response = "Many communities host e-waste collection events where you can drop off old electronics for recycling.";
+    } else if (lowerUserMessage.includes('refurbished electronics')) {
+        response = "Consider purchasing refurbished electronics, as they are often restored to good working condition.";
+    } else if (lowerUserMessage.includes('e-waste impact on health')) {
+        response = "E-waste exposure can harm human health due to toxic substances. Responsible disposal protects you and the environment.";
+    } else if (lowerUserMessage.includes('certified e-waste recyclers')) {
+        response = "Choose certified e-waste recyclers and disposal services to ensure environmentally responsible practices.";
+    } else if (lowerUserMessage.includes('e-waste awareness')) {
+        response = "Raising awareness about e-waste management is crucial for minimizing its impact. Share information with friends and family.";
+    } else if (lowerUserMessage.includes('suitable sites for recycling')) {
+        response = "You can find suitable sites for e-waste recycling by searching for local recycling centers, electronic waste disposal events, or certified e-waste recyclers in your area.";
+    } else if (lowerUserMessage.includes('what is e-waste') || lowerUserMessage.includes('e-waste definition')) {
+        response = "E-waste, or electronic waste, refers to discarded electronic devices, including computers, mobile phones, televisions, and other electronic equipment. Proper management is important due to the potential environmental and health hazards associated with e-waste.";
+    } else if (lowerUserMessage.includes('e-waste impact on the economy')) {
+        response = "E-waste recycling can have a positive impact on the economy by creating jobs in the recycling and refurbishing industry.";
+    } else if (lowerUserMessage.includes('green electronics design')) {
+        response = "Green electronics design focuses on creating products that are energy-efficient, environmentally friendly, and easy to recycle or reuse.";
+    } else if (lowerUserMessage.includes('reducing electronic waste at home')) {
+        response = "To reduce e-waste at home, practice responsible consumption, maintain and repair electronics, and consider upcycling or repurposing old devices.";
+    } else if (lowerUserMessage.includes('e-waste disposal costs')) {
+        response = "The cost of e-waste disposal varies, but recycling is often more affordable than dealing with the environmental and health costs of improper disposal.";
+    } else if (lowerUserMessage.includes('importance of e-waste recycling')) {
+        response = "E-waste recycling is essential to reduce environmental pollution, conserve resources, and mitigate health risks associated with toxic materials.";
+    } else if (lowerUserMessage.includes('benefits of donating electronics')) {
+        response = "Donating electronics can help others, reduce e-waste, and provide a tax deduction for some individuals. It's a win-win situation.";
+    } else if (lowerUserMessage.includes('e-waste and climate change')) {
+        response = "E-waste contributes to climate change due to the energy-intensive production of electronics. Recycling helps reduce these emissions.";
+    } else if (lowerUserMessage.includes('history of e-waste management')) {
+        response = "E-waste management has evolved over the years, with increasing awareness of environmental impacts and the need for responsible disposal.";
+    } else if (lowerUserMessage.includes('sustainability and e-waste')) {
+        response = "Sustainable e-waste management promotes resource conservation, pollution reduction, and a circular economy model.";
+    } else if (lowerUserMessage.includes('e-waste and developing countries')) {
+        response = "Developing countries often face challenges related to informal e-waste recycling, leading to environmental and health concerns. International cooperation is essential.";
+    } else if (lowerUserMessage.includes('e-waste recycling technologies')) {
+        response = "Advanced technologies, such as automated disassembly and material recovery, are used in modern e-waste recycling facilities.";
+    } else if (lowerUserMessage.includes('importance of reducing e-waste generation')) {
+        response = "Reducing e-waste generation by using electronics longer, repairing, and choosing durable products is crucial for a sustainable future.";
+    } else if (lowerUserMessage.includes('e-waste and rare earth metals')) {
+        response = "E-waste contains valuable rare earth metals, making recycling not only eco-friendly but also economically viable.";
+    } else if (lowerUserMessage.includes('electronic waste and landfills')) {
+        response = "Electronic waste in landfills can lead to leaching of toxic materials into soil and water, posing a significant environmental risk.";
+    } else if (lowerUserMessage.includes('e-waste and consumer responsibility')) {
+        response = "Consumers play a vital role in e-waste management through responsible disposal, recycling, and supporting sustainable product design.";
+    } else if (lowerUserMessage.includes('circular economy and e-waste')) {
+        response = "A circular economy approach aims to reduce waste by reusing, remanufacturing, and recycling electronic products.";
+    } else if (lowerUserMessage.includes('green tech and e-waste reduction')) {
+        response = "Green technology focuses on developing energy-efficient and eco-friendly electronic products to reduce e-waste.";
+    } else if (lowerUserMessage.includes('e-waste in the global context')) {
+        response = "E-waste is a global concern, with international organizations working to address its impact through policy and collaboration.";
+    } else if (lowerUserMessage.includes('safe e-waste recycling practices')) {
+        response = "Safe e-waste recycling practices involve proper handling, dismantling, and material recovery to minimize health and environmental risks.";
+    } else if (lowerUserMessage.includes('e-waste and urban mining')) {
+        response = "Urban mining is the process of recovering valuable materials from electronic waste, reducing the need for resource extraction.";
+    } else if (lowerUserMessage.includes('e-waste collection services')) {
+        response = "Many organizations and companies offer e-waste collection services, making it convenient to recycle old electronics.";
+    } else if (lowerUserMessage.includes('impact of electronic consumption')) {
+        response = "Rapid electronic consumption contributes to e-waste growth. Sustainable consumption habits can reduce this impact.";
+    } else if (lowerUserMessage.includes('benefits of electronic waste recovery')) {
+        response = "Electronic waste recovery helps conserve resources, reduce pollution, and support the circular economy, creating economic and environmental benefits.";
+    } else if (lowerUserMessage.includes('e-waste and consumer awareness')) {
+        response = "Consumer awareness is critical in promoting responsible e-waste management, leading to positive environmental and social outcomes.";
+    } else if (lowerUserMessage.includes('government e-waste initiatives')) {
+        response = "Many governments have initiated e-waste programs to regulate disposal, promote recycling, and raise public awareness.";
+    } else if (lowerUserMessage.includes('e-waste in emerging technologies')) {
+        response = "Emerging technologies should consider sustainability to minimize future e-waste and its environmental impact.";
+    } else {
+        // A random response for non-matching questions
+        const randomResponses = [
+            "I'm sorry, I don't have information on that topic at the moment.",
+            "That's an interesting question! Let's talk more about e-waste and technology.",
+            "E-waste management is a significant concern in today's world. Have you encountered any e-waste challenges?",
+            "Feel free to ask more questions about e-waste, tech, or anything else you're curious about!",
+            "Let's continue discussing e-waste and its impact on our environment and society.",
+        ];
+        response = randomResponses[Math.floor(Math.random() * randomResponses.length)];
+    }
+
+    appendBotMessage(response);
+}
+
+    </script>
+</body>
+</html>
